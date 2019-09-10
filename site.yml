@@ -1,0 +1,40 @@
+---
+
+- name: "install bash_it on all servers"
+  hosts: all
+  roles:
+    - role: mmannerm.bash_it
+      user: ubuntu
+      aliases:
+        - general
+        - git
+        - docker
+        - docker-compose
+      plugins:
+        - history
+        - git
+        - docker
+        - docker-compose
+      completions:
+        - git
+        - docker
+        - docker-compose
+  tags:
+    - setup
+
+- name: "install Docker on servers"
+  hosts: all
+  remote_user: ubuntu
+  become: yes
+  roles:
+    - setup
+  tags:
+    - setup
+
+- name: "deploy the Docker containers"
+  hosts: all
+  remote_user: ubuntu
+  roles:
+    - stacks
+  tags:
+    - stacks

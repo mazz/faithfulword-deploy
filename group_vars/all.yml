@@ -1,0 +1,20 @@
+ansible_connection: ssh
+ansible_user: ubuntu
+ansible_ssh_private_key_file: fw.pem
+ansible_port: 22
+ansible_host_key_checking: false
+
+remote_user: ubuntu
+
+repo_origin: git@github.com:FaithfulAudio/faithfulword-phx.git
+repo_local: /home/ubuntu/faithfulword-phx
+repo_key_file: /home/ubuntu/.ssh/fw.pem
+
+docker_group: docker
+docker_install_compose: true
+docker_compose_version: "1.24.1"
+docker_compose_path: /usr/local/bin/docker-compose
+
+container_tag_name: "faithful_word"
+proxy_network_name: "proxy-public"
+proxy_cert_storage_name: "proxy-public-certificates"

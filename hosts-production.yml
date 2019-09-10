@@ -1,0 +1,6 @@
+servers:
+  hosts:
+    production:
+      ansible_host: 157.230.171.172
+  vars:
+    repo_version: master

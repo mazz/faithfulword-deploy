@@ -1,0 +1,54 @@
+---
+
+- name: "list networks"
+  shell: docker network ls
+  register: docker_networks
+
+- name: "create traefik network"
+  shell: docker network create {{ proxy_network_name }}
+  when: docker_networks.stdout.find( proxy_network_name ) == -1
+
+- name: "list volumes"
+  shell: docker volume ls
+  register: docker_volumes
+
+- name: "create a volume for certificates"
+  shell: docker volume create {{ proxy_cert_storage_name }}
+  when: docker_volumes.stdout.find( proxy_cert_storage_name ) == -1
+
+# This public key is set on Github repo Settings under "Deploy keys"
+- name: Upload the private key used for Github cloning
+  copy: >-
+    src={{ ansible_ssh_private_key_file }} dest={{ repo_key_file }}
+    owner=ubuntu group=docker mode=600
+
+- name: "get seo-engine files from Github repository"
+  git:
+    repo: "{{ repo_origin }}"
+    dest: "{{ repo_local }}"
+    key_file: "{{ repo_key_file }}"
+    version: "{{ repo_version }}"
+    depth: 1
+    accept_hostkey: yes
+    force: yes
+
+- name: "compile the image"
+  shell: docker build . -t {{ container_tag_name }} -f
+  args:
+    chdir: "{{ repo_local }}"
+
+# - name: "stop the docker services"
+#   shell: docker-compose stop
+#   args:
+#     chdir: {{ repo_local }}
+
+# - name: "remove the servers"
+#   shell: docker-compose rm -f
+#   args:
+#     chdir: {{ repo_local }}
+
+
+# - name: "deploy the docker services"
+#   shell: docker-compose up -d
+#   args:
+#     chdir: {{ repo_local }}

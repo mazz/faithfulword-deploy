@@ -1,0 +1,6 @@
+servers:
+  hosts:
+    edge:
+      ansible_host: 178.128.27.102
+  vars:
+    repo_version: develop

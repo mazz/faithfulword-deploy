@@ -1,0 +1,26 @@
+---
+
+- name: Update apt packages
+  apt:
+    update_cache: yes
+  tags:
+    - system
+
+- name: Import docker tasks
+  include_tasks: docker.yml
+
+- name: Remove useless apt packages from the cache
+  apt:
+    autoclean: yes
+  tags:
+    - system
+
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
+  tags:
+    - system
+
+- name: Assign hostname to every machine
+  hostname:
+    name: "{{ inventory_hostname }}"

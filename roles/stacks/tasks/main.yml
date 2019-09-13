@@ -33,7 +33,7 @@
     force: yes
 
 - name: "compile the image"
-  shell: docker build . -t {{ container_tag_name }} -f
+  shell: docker build . -t {{ container_tag_name }}
   args:
     chdir: "{{ repo_local }}"
 

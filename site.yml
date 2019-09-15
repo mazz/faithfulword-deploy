@@ -4,7 +4,7 @@
   hosts: all
   roles:
     - role: mmannerm.bash_it
-      user: ubuntu
+      user: root
       aliases:
         - general
         - git
@@ -24,7 +24,7 @@
 
 - name: "install Docker on servers"
   hosts: all
-  remote_user: ubuntu
+  remote_user: root
   become: yes
   roles:
     - setup
@@ -33,7 +33,7 @@
 
 - name: "deploy the Docker containers"
   hosts: all
-  remote_user: ubuntu
+  remote_user: root
   roles:
     - stacks
   tags:

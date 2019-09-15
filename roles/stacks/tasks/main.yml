@@ -20,7 +20,7 @@
 - name: Upload the private key used for Github cloning
   copy: >-
     src={{ ansible_ssh_private_key_file }} dest={{ repo_key_file }}
-    owner=ubuntu group=docker mode=600
+    owner=root group=docker mode=600
 
 - name: "get seo-engine files from Github repository"
   git:
@@ -36,6 +36,7 @@
   shell: docker build . -t {{ container_tag_name }}
   args:
     chdir: "{{ repo_local }}"
+  poll: 60
 
 # - name: "stop the docker services"
 #   shell: docker-compose stop

@@ -16,5 +16,6 @@ docker_compose_version: "1.24.1"
 docker_compose_path: /usr/local/bin/docker-compose
 
 container_tag_name: "faithful_word"
-proxy_network_name: "proxy-public"
-proxy_cert_storage_name: "proxy-public-certificates"
+
+proxy_network_name: "proxy-network"
+

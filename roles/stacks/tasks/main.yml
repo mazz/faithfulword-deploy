@@ -8,14 +8,6 @@
   shell: docker network create {{ proxy_network_name }}
   when: docker_networks.stdout.find( proxy_network_name ) == -1
 
-- name: "list volumes"
-  shell: docker volume ls
-  register: docker_volumes
-
-- name: "create a volume for certificates"
-  shell: docker volume create {{ proxy_cert_storage_name }}
-  when: docker_volumes.stdout.find( proxy_cert_storage_name ) == -1
-
 # This public key is set on Github repo Settings under "Deploy keys"
 - name: Upload the private key used for Github cloning
   copy: >-
@@ -32,10 +24,10 @@
     accept_hostkey: yes
     force: yes
 
-- name: "compile the image"
-  shell: docker build . -t {{ container_tag_name }} -f
-  args:
-    chdir: "{{ repo_local }}"
+# - name: "compile the image"
+#  shell: docker build . -t {{ container_tag_name }} -f
+#  args:
+#    chdir: "{{ repo_local }}"
 
 # - name: "stop the docker services"
 #   shell: docker-compose stop

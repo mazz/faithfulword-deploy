@@ -1,6 +1,6 @@
 servers:
   hosts:
-    production:
+    production-faithful-word:
       ansible_host: 157.230.171.172
   vars:
     repo_version: master

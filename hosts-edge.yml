@@ -1,6 +1,6 @@
 servers:
   hosts:
-    edge:
+    edge-faithful-word:
       ansible_host: 178.128.27.102
   vars:
     repo_version: develop

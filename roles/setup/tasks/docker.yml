@@ -12,6 +12,8 @@
       - apt-transport-https
       - build-essential
       - mc
+      - mosh
+      - fail2ban
       - ca-certificates
       - curl
       - software-properties-common

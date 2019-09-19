@@ -1,14 +1,14 @@
 ansible_connection: ssh
-ansible_user: ubuntu
+ansible_user: root
 ansible_ssh_private_key_file: fw.pem
 ansible_port: 22
 ansible_host_key_checking: false
 
-remote_user: ubuntu
+remote_user: root
 
 repo_origin: git@github.com:FaithfulAudio/faithfulword-phx.git
-repo_local: /home/ubuntu/faithfulword-phx
-repo_key_file: /home/ubuntu/.ssh/fw.pem
+repo_local: /root/faithfulword-phx
+repo_key_file: /root/.ssh/fw.pem
 
 docker_group: docker
 docker_install_compose: true

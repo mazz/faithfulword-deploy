@@ -1,6 +1,7 @@
 servers:
   hosts:
     edge-faithful-word:
-      ansible_host: 178.128.27.102
+      ansible_host: japheth.ca
+      ansible_user: root
   vars:
     repo_version: develop
